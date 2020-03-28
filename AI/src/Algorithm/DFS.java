@@ -4,11 +4,11 @@ import java.util.*;
 
 public class DFS {
 	
-	private ArrayList<Integer>[] graph; // -> [nó][conexões]
+	private ArrayList<Graph>[] graph; // -> [nó][conexões]
 	private boolean[] visited;
 	private ArrayList<Integer> path = new ArrayList<Integer>();
 	
-	public DFS(ArrayList<Integer>[] graph, int nodes) {
+	public DFS(ArrayList<Graph>[] graph, int nodes) {
 		this.graph = graph;
 		this.visited = new boolean[nodes];
         // O valor inicial de visited vai ser sempre uma array de false.

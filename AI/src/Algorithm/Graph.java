@@ -6,7 +6,8 @@ import Rules.Coordinate;
 
 public class Graph {
 
-	private ArrayList<Integer>[] graphConnections;
+    // A ArrayList vai ser uma ArrayList de Graph
+	private ArrayList<Graph>[] graphConnections;
 	private int[] graphWeights;
 	private Coordinate[] graphAttributes;
 	
@@ -17,17 +18,17 @@ public class Graph {
 		this.graphAttributes = new Coordinate[nodes];
 		
 		for (int i = 0; i < graphConnections.length; i++) {
-			this.graphConnections[i] = new ArrayList<Integer>();
+			this.graphConnections[i] = new ArrayList<Graph>();
 		}
 	}
 	
-	public void addElements(int node, int ... elements) {
-		for (int i : elements) {
+	public void addElements(int node, Graph ... elements) {
+		for (Graph i : elements) {
 			this.graphConnections[node].add(i);
 		}
 	}
 	
-	public ArrayList<Integer>[] getGraphConnections(){
+	public ArrayList<Graph>[] getGraphConnections(){
 		return this.graphConnections;
 	}
 	
@@ -75,18 +76,23 @@ public class Graph {
 		
 		return dfs.getPath().size();
 	}
-	/*
+
 	public static void main(String[] args) {
-		Graph g = new Graph(2);
-		g.addElements(0, 1,2,2,3,4,5);
-		g.addElements(1, 2,3,4,5);
-		
+        // Implementando o segundo grafo que Felipe desenhou no Whats.
+		Graph g_0 = new Graph(3);
+        // Como só o nó 1 é um subgrafo, só ele precisa ser adicionado. Os outros nó terão cada um seu peso dentro de g_0, mas não terão um objeto equivalente na ArrayList
+        Graph sub_graph_1 = new Graph(2);
+        Graph sub_graph_5 = new Graph(1);
+        
+		g_0.addElements(0, sub_graph_1);
+        sub_graph_1.addElements(1, sub_graph_5);
+        /*
 		ArrayList<Integer>[] graph = g.graph();
 		for (int i = 0; i < graph.length; i++) {
 			for (int j = 0; j < graph[i].size(); j++) {
 				System.out.print(graph[i].get(j));
 			}
 			System.out.println();
-		}
-	}*/
+		}*/
+	}
 }
